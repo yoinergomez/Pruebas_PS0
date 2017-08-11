@@ -10,8 +10,6 @@ script:
 
 jdk:
   - oraclejdk8
-  - oraclejdk7
-  - openjdk6
 
 after_success:
   - mvn clean test jacoco:report coveralls:report
