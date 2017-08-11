@@ -3,6 +3,7 @@ language: java
 install:
   - sudo pip install requests[security]
   - sudo pip install coveralls
+  - mvn test -B
 
 jdk:
   - oraclejdk8
