@@ -22,7 +22,7 @@ public class NodoDoble {
      * @param previous nodo anterior
      * @param dato dato del nodo
      */
-    NodoDoble(NodoDoble next, NodoDoble previous, Double dato) {
+    public NodoDoble(NodoDoble next, NodoDoble previous, Double dato) {
          this.siguiente = next;
          this.anterior = previous;
          this.dato = dato;
@@ -31,7 +31,7 @@ public class NodoDoble {
      * Constructor de la clase node, se asigna null a los nodos next y previous
      * @param dato 
      */
-    NodoDoble(Double dato) {
+    public NodoDoble(Double dato) {
          this.siguiente = null;
          this.anterior = null;
          this.dato = dato;
@@ -39,7 +39,7 @@ public class NodoDoble {
     /**
      * Constructor de la clase node vacio, se asigna null a todos los atributos
      */
-    NodoDoble() {
+    public NodoDoble() {
          this.siguiente = null;
          this.anterior = null;
          this.dato = null;
