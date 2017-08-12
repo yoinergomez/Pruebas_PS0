@@ -7,6 +7,8 @@ package co.edu.udea.pruebas_ps0.util;
 
 import co.edu.udea.pruebas_ps0.ldl.LDL;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,13 +34,13 @@ public class ArchivosExcelIOTest {
 
     /**
      * Test of convertirExcelALDL method, of class ArchivosExcelIO.
+     * @throws java.io.FileNotFoundException
      */
-    @Test
-    public void testAbrirArchivoExcel() {
+    @Test(expected=FileNotFoundException.class)
+    public void testAbrirArchivoExcel() throws FileNotFoundException {
         ArchivosExcelIO archivosExcelIO=new ArchivosExcelIO();
         String nombreArchivo="prueba.txt";
         File f= archivosExcelIO.abrirArchivoExcel(nombreArchivo);
-        assertTrue(f.exists());
     }
 
     /**

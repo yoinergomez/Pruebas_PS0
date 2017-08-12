@@ -8,6 +8,7 @@ package co.edu.udea.pruebas_ps0.util;
 import co.edu.udea.pruebas_ps0.ldl.LDL;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  *
@@ -19,10 +20,14 @@ public class ArchivosExcelIO {
         return null;
     }
     
-    public File abrirArchivoExcel(String nombreArchivo){
-        File f;
+    public File abrirArchivoExcel(String nombreArchivo) throws FileNotFoundException{
+        File f=null;
         f =new File(nombreArchivo);
+        if(!f.exists()){
+            throw new  FileNotFoundException("El archivo no existe");
+        }
         return f;
+        
         
     }
     public void escribirEnExcel(){
