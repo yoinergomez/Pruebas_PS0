@@ -19,8 +19,8 @@ public class NodoDobleTest {
      */
     @Test
     public void testGetDato() {
-        NodoDoble instance = new NodoDoble(new Double(10));
-        assertEquals(instance.getDato(), new Double(10));
+        NodoDoble instancia = new NodoDoble(new Double(10));
+        assertEquals(instancia.getDato(), new Double(10));
     }
 
     /**
@@ -29,15 +29,15 @@ public class NodoDobleTest {
     @Test
     public void testSetDato() {
         Double dato = new Double(20);
-        NodoDoble instance = new NodoDoble();
-        instance.setDato(dato);
-        assertEquals(instance.getDato(), new Double(20));
+        NodoDoble instancia = new NodoDoble();
+        instancia.setDato(dato);
+        assertEquals(instancia.getDato(), new Double(20));
     }
     
     @Test(expected = NumberFormatException.class)
     public void testSetDatoString() {
-        NodoDoble instance = new NodoDoble();
-        instance.setDato(new Double("sadasda"));
+        NodoDoble instancia = new NodoDoble();
+        instancia.setDato(new Double("sadasda"));
     }
 
     /**
@@ -46,8 +46,8 @@ public class NodoDobleTest {
     @Test
     public void testGetSiguiente() {
         NodoDoble siguiente = new NodoDoble();
-        NodoDoble instance = new NodoDoble(siguiente, null, null);
-        assertEquals(instance.getSiguiente(), siguiente);
+        NodoDoble instancia = new NodoDoble(siguiente, null, null);
+        assertEquals(instancia.getSiguiente(), siguiente);
     }
 
     /**
@@ -56,9 +56,9 @@ public class NodoDobleTest {
     @Test
     public void testSetSiguiente() {
         NodoDoble siguiente = new NodoDoble();
-        NodoDoble instance = new NodoDoble();
-        instance.setSiguiente(siguiente);
-        assertEquals(instance.getSiguiente(), siguiente);
+        NodoDoble instancia = new NodoDoble();
+        instancia.setSiguiente(siguiente);
+        assertEquals(instancia.getSiguiente(), siguiente);
     }
 
     /**
@@ -67,8 +67,8 @@ public class NodoDobleTest {
     @Test
     public void testGetAnterior() {
         NodoDoble anterior = new NodoDoble();
-        NodoDoble instance = new NodoDoble(null, anterior, null);
-        assertEquals(instance.getAnterior(), anterior);
+        NodoDoble instancia = new NodoDoble(null, anterior, null);
+        assertEquals(instancia.getAnterior(), anterior);
     }
 
     /**
@@ -77,9 +77,9 @@ public class NodoDobleTest {
     @Test
     public void testSetAnterior() {
         NodoDoble anterior = new NodoDoble();
-        NodoDoble instance = new NodoDoble();
-        instance.setAnterior(anterior);
-        assertEquals(instance.getAnterior(), anterior);
+        NodoDoble instancia = new NodoDoble();
+        instancia.setAnterior(anterior);
+        assertEquals(instancia.getAnterior(), anterior);
     }
     
 }
