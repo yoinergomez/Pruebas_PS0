@@ -53,7 +53,7 @@ public class LDLTest {
         assertEquals(Boolean.TRUE, result);
     }
     
-     @Test
+    @Test
     public void testEliminarCabeza() {
         instance.imprimirLista();
         System.out.println("\n");
@@ -62,7 +62,7 @@ public class LDLTest {
         assertEquals(Boolean.FALSE, result);
     }
 
-      @Test
+    @Test
     public void testEliminarUltimo() {
         instance.imprimirLista();
         System.out.println("\n");
@@ -82,4 +82,23 @@ public class LDLTest {
         assertEquals(candidato, result);
     }
     
+    @Test
+    public void testSumarElementosLista(){
+        instance.imprimirLista();
+        Double resultado = instance.sumar();
+        instance.imprimirLista();
+        assertEquals(new Double(80.0), resultado);
+    }
+    
+    @Test
+    public void testSumarElementosListaVacia(){
+        LDL lista = new LDL();
+        assertEquals(new Double(0), lista.sumar());
+    }
+    
+    @Test
+    public void testAgregarDatoGigante(){
+        Double foo = Double.MAX_VALUE*Double.MAX_VALUE;
+        instance.insertar(new NodoDoble(foo));
+    }
 }
