@@ -86,4 +86,8 @@ public class LDL {
         }
         return suma;
     }
+    
+    public int length() {
+        return cabeza.getDato().intValue();
+    }
 }

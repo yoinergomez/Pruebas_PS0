@@ -131,7 +131,7 @@ public class LDLTest {
     
     @Test
     public void testTamaño() {
-        Double valor = instance.getPrimerNodo().getAnterior().getDato();
-        Assert.assertTrue(valor == 3.0);
+        int tamaño = instance.length();
+        assertEquals(3, tamaño);
     }
 }
