@@ -89,7 +89,8 @@ public class ArchivosExcelIOTest {
      * @throws Exception
      */
     @Test(expected = Exception.class)
-    public void testAbrirArchivoDistintoExcel() throws FileNotFoundException, Exception {
+    public void testAbrirArchivoDistintoExcel() 
+            throws FileNotFoundException, Exception {
       ArchivosExcelIO archivosExcelIO = new ArchivosExcelIO();
         String path = this.getClass().getClassLoader().getResource("prueba.txt")
                 .toURI().toString();

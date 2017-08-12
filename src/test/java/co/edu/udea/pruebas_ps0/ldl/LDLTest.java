@@ -45,9 +45,9 @@ public class LDLTest {
     @Test
     public void testInsertar() {
         NodoDoble nuevo = new NodoDoble();
-        LDL instance = new LDL();
-        instance.insertar(nuevo);
-        assertEquals(instance.getUltimo(), nuevo);
+        LDL instancia = new LDL();
+        instancia.insertar(nuevo);
+        assertEquals(instancia.getUltimo(), nuevo);
     }
 
     /**
@@ -56,68 +56,68 @@ public class LDLTest {
     @Test
     public void testEliminar() {
         NodoDoble candidato = new NodoDoble(new Double(60));
-        LDL instance = new LDL();
-        instance.insertar(new NodoDoble(new Double(20)));
-        instance.insertar(new NodoDoble(new Double(10)));
-        instance.insertar(new NodoDoble(new Double(50)));
-        instance.insertar(candidato);
-        instance.imprimirLista();
+        LDL instancia = new LDL();
+        instancia.insertar(new NodoDoble(new Double(20)));
+        instancia.insertar(new NodoDoble(new Double(10)));
+        instancia.insertar(new NodoDoble(new Double(50)));
+        instancia.insertar(candidato);
+        instancia.imprimirLista();
         System.out.println("\n");
-        boolean result = instance.eliminar(candidato);
-        instance.imprimirLista();
-        assertEquals(Boolean.TRUE, result);
+        boolean resultado = instancia.eliminar(candidato);
+        instancia.imprimirLista();
+        assertEquals(Boolean.TRUE, resultado);
     }
     
     @Test
     public void testEliminarNodo() {
         NodoDoble candidato = new NodoDoble(new Double(60));
-        LDL instance = new LDL();
-        instance.insertar(new NodoDoble(new Double(20)));
-        instance.insertar(new NodoDoble(new Double(10)));
-        instance.insertar(candidato);
-        instance.insertar(new NodoDoble(new Double(50)));
-        instance.imprimirLista();
+        LDL instancia = new LDL();
+        instancia.insertar(new NodoDoble(new Double(20)));
+        instancia.insertar(new NodoDoble(new Double(10)));
+        instancia.insertar(candidato);
+        instancia.insertar(new NodoDoble(new Double(50)));
+        instancia.imprimirLista();
         System.out.println("\n");
-        boolean result = instance.eliminar(candidato);
-        instance.imprimirLista();
+        boolean result = instancia.eliminar(candidato);
+        instancia.imprimirLista();
         assertEquals(Boolean.TRUE, result);
     }
     
     @Test
     public void testEliminarNoExist() {
         NodoDoble candidato = new NodoDoble(new Double(60));
-        LDL instance = new LDL();
-        instance.insertar(new NodoDoble(new Double(20)));
-        instance.insertar(new NodoDoble(new Double(10)));
-        instance.insertar(new NodoDoble(new Double(50)));
-        boolean result = instance.eliminar(candidato);
+        LDL instancia = new LDL();
+        instancia.insertar(new NodoDoble(new Double(20)));
+        instancia.insertar(new NodoDoble(new Double(10)));
+        instancia.insertar(new NodoDoble(new Double(50)));
+        boolean result = instancia.eliminar(candidato);
         assertEquals(Boolean.FALSE, result);
     }
     
      @Test
     public void testEliminarCabeza() {
-        LDL instance = new LDL();
-        instance.insertar(new NodoDoble(new Double(20)));
-        instance.insertar(new NodoDoble(new Double(10)));
-        instance.insertar(new NodoDoble(new Double(50)));
-        instance.imprimirLista();
+        LDL instancia = new LDL();
+        instancia.insertar(new NodoDoble(new Double(20)));
+        instancia.insertar(new NodoDoble(new Double(10)));
+        instancia.insertar(new NodoDoble(new Double(50)));
+        instancia.imprimirLista();
         System.out.println("\n");
-        boolean result = instance.eliminar(instance.getCabeza());
-        instance.imprimirLista();
+        boolean result = instancia.eliminar(instancia.getCabeza());
+        instancia.imprimirLista();
         assertEquals(Boolean.FALSE, result);
     }
 
       @Test
     public void testEliminarUltimo() {
-        LDL instance = new LDL();
-        instance.insertar(new NodoDoble(new Double(20)));
-        instance.insertar(new NodoDoble(new Double(10)));
-        instance.insertar(new NodoDoble(new Double(50)));
-        instance.imprimirLista();
+        LDL instancia = new LDL();
+        instancia.insertar(new NodoDoble(new Double(20)));
+        instancia.insertar(new NodoDoble(new Double(10)));
+        instancia.insertar(new NodoDoble(new Double(50)));
+        instancia.imprimirLista();
         System.out.println("\n");
-        boolean result = instance.eliminar(instance.getUltimo());
-        instance.imprimirLista();
-        assertEquals(Boolean.TRUE, result);
+        boolean resultado = instancia.eliminar(instancia.getUltimo());
+        instancia.imprimirLista();
+        assertEquals(Boolean.TRUE, resultado);
     }   
     /**
      * Test of getUltimo method, of class LDL.
@@ -125,11 +125,11 @@ public class LDLTest {
     @Test
     public void testGetUltimo() {
         System.out.println("getUltimo");
-        LDL instance = new LDL();
+        LDL instancia = new LDL();
         NodoDoble candidato = new NodoDoble(new Double(60));
-        instance.insertar(candidato);
-        NodoDoble result = instance.getUltimo();
-        assertEquals(candidato, result);
+        instancia.insertar(candidato);
+        NodoDoble resultado = instancia.getUltimo();
+        assertEquals(candidato, resultado);
     }
     
 }
