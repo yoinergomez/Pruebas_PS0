@@ -6,16 +6,13 @@
 package co.edu.udea.pruebas_ps0.util;
 
 import co.edu.udea.pruebas_ps0.ldl.LDL;
+import co.edu.udea.pruebas_ps0.util.excepcion.ValidacionPS0;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.URISyntaxException;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -42,27 +39,30 @@ public class ArchivosExcelIOTest {
      * Test of testAbrirArchivoInexistente method, of class ArchivosExcelIO.
      *
      * @throws java.io.FileNotFoundException
+     * @throws co.edu.udea.pruebas_ps0.util.excepcion.ValidacionPS0
      */
     @Test(expected = FileNotFoundException.class)
-    public void testAbrirArchivoInexistente() throws FileNotFoundException, Exception {
+    public void testAbrirArchivoInexistente() throws FileNotFoundException, ValidacionPS0 {
         ArchivosExcelIO archivosExcelIO = new ArchivosExcelIO();
         String nombreArchivo = "prueba2.txt";
-        File f = archivosExcelIO.abrirArchivoExcel(nombreArchivo);
+        File f = archivosExcelIO.encontrarArchivo(nombreArchivo);
     }
 
     /**
      *
      * @throws FileNotFoundException
+     * @throws co.edu.udea.pruebas_ps0.util.excepcion.ValidacionPS0
+     * @throws java.net.URISyntaxException
      */
     @Test
-    public void testAbrirArchivoExistente() throws FileNotFoundException, Exception {
+    public void testAbrirArchivoExistente() throws FileNotFoundException,
+            ValidacionPS0, URISyntaxException {
         ArchivosExcelIO archivosExcelIO = new ArchivosExcelIO();
         String path = this.getClass().getClassLoader().getResource("prueba.xls")
                 .toURI().toString();
 
-        path=path.substring(5);
-        System.out.println(path);
-        File f = archivosExcelIO.abrirArchivoExcel(path);
+        path = path.substring(5);
+        File f = archivosExcelIO.encontrarArchivo(path);
         assertTrue(f.exists());
     }
 
@@ -70,15 +70,18 @@ public class ArchivosExcelIOTest {
      * Test of escribirEnExcel method, of class ArchivosExcelIO.
      *
      * @throws java.io.FileNotFoundException
+     * @throws co.edu.udea.pruebas_ps0.util.excepcion.ValidacionPS0
+     * @throws java.net.URISyntaxException
      */
     @Test
-    public void testAbrirArchivosExcel() throws FileNotFoundException, Exception {
-         ArchivosExcelIO archivosExcelIO = new ArchivosExcelIO();
+    public void testAbrirArchivosExcel() throws FileNotFoundException, ValidacionPS0,
+            URISyntaxException {
+        ArchivosExcelIO archivosExcelIO = new ArchivosExcelIO();
         String path = this.getClass().getClassLoader().getResource("prueba.xls")
                 .toURI().toString();
 
-        path=path.substring(5);
-        File f = archivosExcelIO.abrirArchivoExcel(path);
+        path = path.substring(5);
+        File f = archivosExcelIO.encontrarArchivo(path);
         String ext = FilenameUtils.getExtension(f.getName());
         assertArrayEquals("xls".toCharArray(), ext.toCharArray());
     }
@@ -86,25 +89,50 @@ public class ArchivosExcelIOTest {
     /**
      *
      * @throws FileNotFoundException
-     * @throws Exception
+     * @throws co.edu.udea.pruebas_ps0.util.excepcion.ValidacionPS0
+     * @throws java.net.URISyntaxException
      */
     @Test(expected = Exception.class)
-    public void testAbrirArchivoDistintoExcel() throws FileNotFoundException, Exception {
-      ArchivosExcelIO archivosExcelIO = new ArchivosExcelIO();
+    public void testAbrirArchivoDistintoExcel() throws FileNotFoundException,
+            ValidacionPS0, URISyntaxException {
+        ArchivosExcelIO archivosExcelIO = new ArchivosExcelIO();
         String path = this.getClass().getClassLoader().getResource("prueba.txt")
                 .toURI().toString();
 
-        path=path.substring(5);
-        File f = archivosExcelIO.abrirArchivoExcel(path);
+        path = path.substring(5);
+        File f = archivosExcelIO.encontrarArchivo(path);
     }
 
+    /**
+     *
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ValidacionPS0
+     * @throws URISyntaxException
+     */
     @Test
-    public void testobtenerHojaExcel() throws FileNotFoundException, Exception {
-//        ArchivosExcelIO archivosExcelIO=new ArchivosExcelIO();
-//        String nombreArchivo="C:/Users/Pc1/Desktop1/prueba.xls";
-//        archivosExcelIO.convertirExcelALDL(nombreArchivo);
-//        Sheet sheet= archivosExcelIO.
+    public void testAbrirLibroExcel() throws FileNotFoundException, IOException,
+            ValidacionPS0, URISyntaxException {
+        ArchivosExcelIO archivosExcelIO = new ArchivosExcelIO();
+        String path = this.getClass().getClassLoader().getResource("prueba.xls")
+                .toURI().toString();
+        path = path.substring(5);
+        File f=archivosExcelIO.encontrarArchivo(path);
+        Workbook w= archivosExcelIO.abrirLibroExcel(f);
+        assertNotNull(w);
 
+    }
+    
+    @Test
+    public void testLeerPrimeraCelda() throws URISyntaxException, ValidacionPS0,
+            IOException{
+         ArchivosExcelIO archivosExcelIO = new ArchivosExcelIO();
+        String path = this.getClass().getClassLoader().getResource("prueba.xls")
+                .toURI().toString();
+        path = path.substring(5);
+        LDL lista=archivosExcelIO.convertirExcelALDL(path);
+        assertNotNull(lista.getCabeza().getSiguiente());
+        
     }
 
 }
