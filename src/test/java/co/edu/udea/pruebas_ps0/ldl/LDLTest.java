@@ -5,6 +5,7 @@
  */
 package co.edu.udea.pruebas_ps0.ldl;
 
+import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
@@ -83,11 +84,11 @@ public class LDLTest {
     public void testEliminarCabeza() {
         instance.imprimirLista();
         System.out.println("\n");
-        boolean result = instance.eliminar(instance.getCabeza());
+        boolean result = instance.eliminar(instance.getPrimerNodo().getAnterior());
         instance.imprimirLista();
         assertEquals(Boolean.FALSE, result);
     }
-
+    
     @Test
     public void testEliminarUltimo() {
         instance.imprimirLista();
@@ -126,5 +127,11 @@ public class LDLTest {
     public void testAgregarDatoGigante(){
         Double foo = Double.MAX_VALUE*Double.MAX_VALUE;
         instance.insertar(new NodoDoble(foo));
+    }
+    
+    @Test
+    public void testTamaño() {
+        Double valor = instance.getPrimerNodo().getAnterior().getDato();
+        Assert.assertTrue(valor == 3.0);
     }
 }

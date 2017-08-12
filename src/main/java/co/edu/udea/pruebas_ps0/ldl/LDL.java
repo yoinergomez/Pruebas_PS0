@@ -73,8 +73,8 @@ public class LDL {
         return ultimo;
     }
 
-    public NodoDoble getCabeza() {
-        return cabeza;
+    public NodoDoble getPrimerNodo() {
+        return cabeza.getSiguiente();
     }
 
     public Double sumar() {
