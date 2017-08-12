@@ -17,7 +17,6 @@ public class LDL {
         cabeza = new NodoDoble(null, null, new Double(0));
         ultimo = cabeza;
     }
-    
     /**
      * Inserta el nuevo nodo al final de la lista
      * @param nuevo 
@@ -74,8 +73,8 @@ public class LDL {
         return ultimo;
     }
 
-    public NodoDoble getCabeza() {
-        return cabeza;
+    public NodoDoble getPrimerNodo() {
+        return cabeza.getSiguiente();
     }
 
     public Double sumar() {
@@ -86,5 +85,9 @@ public class LDL {
             aux = aux.getSiguiente();
         }
         return suma;
+    }
+    
+    public int length() {
+        return cabeza.getDato().intValue();
     }
 }
