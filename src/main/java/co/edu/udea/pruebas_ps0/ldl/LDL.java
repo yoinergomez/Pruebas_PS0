@@ -77,4 +77,14 @@ public class LDL {
     public NodoDoble getCabeza() {
         return cabeza;
     }
+
+    public Double sumar() {
+        NodoDoble aux = cabeza.getSiguiente();
+        Double suma = new Double(0);
+        while (aux != null) {
+            suma += aux.getDato();
+            aux = aux.getSiguiente();
+        }
+        return suma;
+    }
 }

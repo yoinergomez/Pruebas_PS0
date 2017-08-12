@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,23 +19,31 @@ import static org.junit.Assert.*;
  *
  * @author frank
  */
+
+
 public class LDLTest {
-    
+
+    private LDL instance;
+
     public LDLTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
+        instance = new LDL();
+        instance.insertar(new NodoDoble(new Double(20)));
+        instance.insertar(new NodoDoble(new Double(10)));
+        instance.insertar(new NodoDoble(new Double(50)));
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -67,7 +76,7 @@ public class LDLTest {
         instancia.imprimirLista();
         assertEquals(Boolean.TRUE, resultado);
     }
-    
+
     @Test
     public void testEliminarNodo() {
         NodoDoble candidato = new NodoDoble(new Double(60));
@@ -82,7 +91,7 @@ public class LDLTest {
         instancia.imprimirLista();
         assertEquals(Boolean.TRUE, result);
     }
-    
+
     @Test
     public void testEliminarNoExist() {
         NodoDoble candidato = new NodoDoble(new Double(60));
@@ -93,8 +102,8 @@ public class LDLTest {
         boolean result = instancia.eliminar(candidato);
         assertEquals(Boolean.FALSE, result);
     }
-    
-     @Test
+
+    @Test
     public void testEliminarCabeza() {
         LDL instancia = new LDL();
         instancia.insertar(new NodoDoble(new Double(20)));
@@ -107,7 +116,7 @@ public class LDLTest {
         assertEquals(Boolean.FALSE, result);
     }
 
-      @Test
+    @Test
     public void testEliminarUltimo() {
         LDL instancia = new LDL();
         instancia.insertar(new NodoDoble(new Double(20)));
@@ -118,7 +127,8 @@ public class LDLTest {
         boolean resultado = instancia.eliminar(instancia.getUltimo());
         instancia.imprimirLista();
         assertEquals(Boolean.TRUE, resultado);
-    }   
+    }
+
     /**
      * Test of getUltimo method, of class LDL.
      */
@@ -131,5 +141,24 @@ public class LDLTest {
         NodoDoble resultado = instancia.getUltimo();
         assertEquals(candidato, resultado);
     }
-    
+
+    @Test
+    public void testSumarElementosLista() {
+        instance.imprimirLista();
+        Double resultado = instance.sumar();
+        instance.imprimirLista();
+        assertEquals(new Double(80.0), resultado);
+    }
+
+    @Test
+    public void testSumarElementosListaVacia() {
+        LDL lista = new LDL();
+        assertEquals(new Double(0), lista.sumar());
+    }
+
+    @Test
+    public void testAgregarDatoGigante() {
+        Double foo = Double.MAX_VALUE * Double.MAX_VALUE;
+        instance.insertar(new NodoDoble(foo));
+    }
 }
