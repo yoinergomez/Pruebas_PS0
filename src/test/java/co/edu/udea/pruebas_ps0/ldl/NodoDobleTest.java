@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.pruebas_ps0_ldl;
+package co.edu.udea.pruebas_ps0.ldl;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -12,66 +12,66 @@ import static org.junit.Assert.*;
  *
  * @author frank
  */
-public class NodeTest {
+public class NodoDobleTest {
 
     /**
-     * Test of getDato method, of class Node.
+     * Test of getDato method, of class NodoDoble.
      */
     @Test
     public void testGetDato() {
-        Node instance = new Node(new Double(10));
+        NodoDoble instance = new NodoDoble(new Double(10));
         assertEquals(instance.getDato(), new Double(10));
     }
 
     /**
-     * Test of setDato method, of class Node.
+     * Test of setDato method, of class NodoDoble.
      */
     @Test
     public void testSetDato() {
         Double dato = new Double(20);
-        Node instance = new Node();
+        NodoDoble instance = new NodoDoble();
         instance.setDato(dato);
         assertEquals(instance.getDato(), new Double(20));
     }
 
     /**
-     * Test of getSiguiente method, of class Node.
+     * Test of getSiguiente method, of class NodoDoble.
      */
     @Test
     public void testGetSiguiente() {
-        Node siguiente = new Node();
-        Node instance = new Node(siguiente, null, null);
+        NodoDoble siguiente = new NodoDoble();
+        NodoDoble instance = new NodoDoble(siguiente, null, null);
         assertEquals(instance.getSiguiente(), siguiente);
     }
 
     /**
-     * Test of setSiguiente method, of class Node.
+     * Test of setSiguiente method, of class NodoDoble.
      */
     @Test
     public void testSetSiguiente() {
-        Node siguiente = new Node();
-        Node instance = new Node();
+        NodoDoble siguiente = new NodoDoble();
+        NodoDoble instance = new NodoDoble();
         instance.setSiguiente(siguiente);
         assertEquals(instance.getSiguiente(), siguiente);
     }
 
     /**
-     * Test of getAnterior method, of class Node.
+     * Test of getAnterior method, of class NodoDoble.
      */
     @Test
     public void testGetAnterior() {
-        Node anterior = new Node();
-        Node instance = new Node(null, anterior, null);
+        NodoDoble anterior = new NodoDoble();
+        NodoDoble instance = new NodoDoble(null, anterior, null);
         assertEquals(instance.getAnterior(), anterior);
     }
 
     /**
-     * Test of setAnterior method, of class Node.
+     * Test of setAnterior method, of class NodoDoble.
      */
     @Test
     public void testSetAnterior() {
-        Node anterior = new Node();
-        Node instance = new Node();
+        NodoDoble anterior = new NodoDoble();
+        NodoDoble instance = new NodoDoble();
         instance.setAnterior(anterior);
         assertEquals(instance.getAnterior(), anterior);
     }

@@ -1,4 +1,4 @@
-package co.edu.udea.pruebas_ps0_ldl;
+package co.edu.udea.pruebas_ps0.ldl;
 
 /**
  * Clase que contiene la estructura de una lista doblemente ligada con nodo 
@@ -10,18 +10,18 @@ package co.edu.udea.pruebas_ps0_ldl;
  */
 public class LDL {
     
-    private Node cabeza;
-    private Node ultimo;
+    private NodoDoble cabeza;
+    private NodoDoble ultimo;
 
     public LDL() {
-        cabeza = new Node(null, null, new Double(0));
+        cabeza = new NodoDoble(null, null, new Double(0));
         ultimo = cabeza;
     }
     /**
      * Inserta el nuevo nodo al final de la lista
      * @param nuevo 
      */
-    public void insertar(Node nuevo) {
+    public void insertar(NodoDoble nuevo) {
         if (nuevo != cabeza && nuevo != ultimo){
             ultimo.setSiguiente(nuevo);
             nuevo.setAnterior(ultimo);
@@ -36,14 +36,14 @@ public class LDL {
      * @param candidato
      * @return 
      */
-    public boolean eliminar(Node candidato) {
+    public boolean eliminar(NodoDoble candidato) {
         if (candidato == cabeza){
             return false;
         }
         if (candidato == ultimo){
             candidato.getAnterior().setSiguiente(null);
         }else{
-            Node actual = cabeza;
+            NodoDoble actual = cabeza;
             while (actual.getSiguiente() != candidato 
                     && actual.getSiguiente() != null){
                 actual = actual.getSiguiente();
@@ -62,18 +62,18 @@ public class LDL {
      * Imprime los datos de la lista ligada
      */
     public void imprimirLista() {
-        Node aux = cabeza;
+        NodoDoble aux = cabeza;
         for (double i = 0; i <= cabeza.getDato(); i++) {
             System.out.print(aux.getDato() + " ");
             aux = aux.getSiguiente();
         }
     }
 
-    public Node getUltimo() {
+    public NodoDoble getUltimo() {
         return ultimo;
     }
 
-    public Node getCabeza() {
+    public NodoDoble getCabeza() {
         return cabeza;
     }
 }

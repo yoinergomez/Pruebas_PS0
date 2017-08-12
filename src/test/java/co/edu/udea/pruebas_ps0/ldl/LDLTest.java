@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.pruebas_ps0_ldl;
+package co.edu.udea.pruebas_ps0.ldl;
 
+import co.edu.udea.pruebas_ps0.ldl.NodoDoble;
+import co.edu.udea.pruebas_ps0.ldl.LDL;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,7 +44,7 @@ public class LDLTest {
      */
     @Test
     public void testInsertar() {
-        Node nuevo = new Node();
+        NodoDoble nuevo = new NodoDoble();
         LDL instance = new LDL();
         instance.insertar(nuevo);
         assertEquals(instance.getUltimo(), nuevo);
@@ -53,11 +55,11 @@ public class LDLTest {
      */
     @Test
     public void testEliminar() {
-        Node candidato = new Node(new Double(60));
+        NodoDoble candidato = new NodoDoble(new Double(60));
         LDL instance = new LDL();
-        instance.insertar(new Node(new Double(20)));
-        instance.insertar(new Node(new Double(10)));
-        instance.insertar(new Node(new Double(50)));
+        instance.insertar(new NodoDoble(new Double(20)));
+        instance.insertar(new NodoDoble(new Double(10)));
+        instance.insertar(new NodoDoble(new Double(50)));
         instance.insertar(candidato);
         instance.imprimirLista();
         System.out.println("\n");
@@ -69,9 +71,9 @@ public class LDLTest {
      @Test
     public void testEliminarCabeza() {
         LDL instance = new LDL();
-        instance.insertar(new Node(new Double(20)));
-        instance.insertar(new Node(new Double(10)));
-        instance.insertar(new Node(new Double(50)));
+        instance.insertar(new NodoDoble(new Double(20)));
+        instance.insertar(new NodoDoble(new Double(10)));
+        instance.insertar(new NodoDoble(new Double(50)));
         instance.imprimirLista();
         System.out.println("\n");
         boolean result = instance.eliminar(instance.getCabeza());
@@ -82,9 +84,9 @@ public class LDLTest {
       @Test
     public void testEliminarUltimo() {
         LDL instance = new LDL();
-        instance.insertar(new Node(new Double(20)));
-        instance.insertar(new Node(new Double(10)));
-        instance.insertar(new Node(new Double(50)));
+        instance.insertar(new NodoDoble(new Double(20)));
+        instance.insertar(new NodoDoble(new Double(10)));
+        instance.insertar(new NodoDoble(new Double(50)));
         instance.imprimirLista();
         System.out.println("\n");
         boolean result = instance.eliminar(instance.getUltimo());
@@ -98,9 +100,9 @@ public class LDLTest {
     public void testGetUltimo() {
         System.out.println("getUltimo");
         LDL instance = new LDL();
-        Node candidato = new Node(new Double(60));
+        NodoDoble candidato = new NodoDoble(new Double(60));
         instance.insertar(candidato);
-        Node result = instance.getUltimo();
+        NodoDoble result = instance.getUltimo();
         assertEquals(candidato, result);
     }
     

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.udea.pruebas_ps0_ldl;
+package co.edu.udea.pruebas_ps0.ldl;
 
 /**
  * Clase que contiene la estructura de un nodo
@@ -11,10 +11,10 @@ package co.edu.udea.pruebas_ps0_ldl;
  * @date 2017/08/11
  * @version v1
  */
-public class Node {
+public class NodoDoble {
     private Double dato;
-    private Node siguiente;
-    private Node anterior;
+    private NodoDoble siguiente;
+    private NodoDoble anterior;
     
     /**
      * Contructor de la clase Node
@@ -22,7 +22,7 @@ public class Node {
      * @param previous nodo anterior
      * @param dato dato del nodo
      */
-    Node(Node next, Node previous, Double dato) {
+    NodoDoble(NodoDoble next, NodoDoble previous, Double dato) {
          this.siguiente = next;
          this.anterior = previous;
          this.dato = dato;
@@ -31,7 +31,7 @@ public class Node {
      * Constructor de la clase node, se asigna null a los nodos next y previous
      * @param dato 
      */
-    Node(Double dato) {
+    NodoDoble(Double dato) {
          this.siguiente = null;
          this.anterior = null;
          this.dato = dato;
@@ -39,7 +39,7 @@ public class Node {
     /**
      * Constructor de la clase node vacio, se asigna null a todos los atributos
      */
-    Node() {
+    NodoDoble() {
          this.siguiente = null;
          this.anterior = null;
          this.dato = null;
@@ -53,19 +53,19 @@ public class Node {
         this.dato = dato;
     }
 
-    public Node getSiguiente() {
+    public NodoDoble getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(Node siguiente) {
+    public void setSiguiente(NodoDoble siguiente) {
         this.siguiente = siguiente;
     }
 
-    public Node getAnterior() {
+    public NodoDoble getAnterior() {
         return anterior;
     }
 
-    public void setAnterior(Node anterior) {
+    public void setAnterior(NodoDoble anterior) {
         this.anterior = anterior;
     }
 }
