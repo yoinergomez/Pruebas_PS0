@@ -131,7 +131,7 @@ public class ArchivosExcelIOTest {
                 .toURI().toString();
         path = path.substring(5);
         LDL lista=archivosExcelIO.convertirExcelALDL(path);
-        assertNotNull(lista.getCabeza().getSiguiente());
+        assertNotNull(lista.getPrimerNodo());
         
     }
 
