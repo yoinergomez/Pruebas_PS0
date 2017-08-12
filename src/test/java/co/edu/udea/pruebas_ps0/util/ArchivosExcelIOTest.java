@@ -60,7 +60,8 @@ public class ArchivosExcelIOTest {
         String path = this.getClass().getClassLoader().getResource("prueba.xls")
                 .toURI().toString();
 
-        path=path.substring(6);
+        path=path.substring(5);
+        System.out.println(path);
         File f = archivosExcelIO.abrirArchivoExcel(path);
         assertTrue(f.exists());
     }
@@ -76,7 +77,7 @@ public class ArchivosExcelIOTest {
         String path = this.getClass().getClassLoader().getResource("prueba.xls")
                 .toURI().toString();
 
-        path=path.substring(6);
+        path=path.substring(5);
         File f = archivosExcelIO.abrirArchivoExcel(path);
         String ext = FilenameUtils.getExtension(f.getName());
         assertArrayEquals("xls".toCharArray(), ext.toCharArray());
@@ -93,7 +94,7 @@ public class ArchivosExcelIOTest {
         String path = this.getClass().getClassLoader().getResource("prueba.txt")
                 .toURI().toString();
 
-        path=path.substring(6);
+        path=path.substring(5);
         File f = archivosExcelIO.abrirArchivoExcel(path);
     }
 

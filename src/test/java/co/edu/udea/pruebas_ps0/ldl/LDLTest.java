@@ -54,6 +54,32 @@ public class LDLTest {
     }
     
     @Test
+    public void testEliminarNodo() {
+        NodoDoble candidato = new NodoDoble(new Double(60));
+        LDL instance = new LDL();
+        instance.insertar(new NodoDoble(new Double(20)));
+        instance.insertar(new NodoDoble(new Double(10)));
+        instance.insertar(candidato);
+        instance.insertar(new NodoDoble(new Double(50)));
+        instance.imprimirLista();
+        System.out.println("\n");
+        boolean result = instance.eliminar(candidato);
+        instance.imprimirLista();
+        assertEquals(Boolean.TRUE, result);
+    }
+    
+    @Test
+    public void testEliminarNoExist() {
+        NodoDoble candidato = new NodoDoble(new Double(60));
+        LDL instance = new LDL();
+        instance.insertar(new NodoDoble(new Double(20)));
+        instance.insertar(new NodoDoble(new Double(10)));
+        instance.insertar(new NodoDoble(new Double(50)));
+        boolean result = instance.eliminar(candidato);
+        assertEquals(Boolean.FALSE, result);
+    }
+    
+    @Test
     public void testEliminarCabeza() {
         instance.imprimirLista();
         System.out.println("\n");
