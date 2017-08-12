@@ -33,6 +33,12 @@ public class NodoDobleTest {
         instance.setDato(dato);
         assertEquals(instance.getDato(), new Double(20));
     }
+    
+    @Test(expected = NumberFormatException.class)
+    public void testSetDatoString() {
+        NodoDoble instance = new NodoDoble();
+        instance.setDato(new Double("sadasda"));
+    }
 
     /**
      * Test of getSiguiente method, of class NodoDoble.
