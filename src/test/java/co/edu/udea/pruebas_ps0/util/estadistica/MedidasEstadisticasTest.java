@@ -7,7 +7,6 @@ package co.edu.udea.pruebas_ps0.util.estadistica;
 
 import co.edu.udea.pruebas_ps0.ldl.LDL;
 import co.edu.udea.pruebas_ps0.ldl.NodoDoble;
-import co.edu.udea.pruebas_ps0.ldl.NodoDobleTest;
 import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
