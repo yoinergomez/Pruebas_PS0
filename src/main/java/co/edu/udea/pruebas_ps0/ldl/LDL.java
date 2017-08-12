@@ -17,6 +17,7 @@ public class LDL {
         cabeza = new NodoDoble(null, null, new Double(0));
         ultimo = cabeza;
     }
+    
     /**
      * Inserta el nuevo nodo al final de la lista
      * @param nuevo 
