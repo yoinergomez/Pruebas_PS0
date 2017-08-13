@@ -39,13 +39,14 @@ public class ArchivosExcelIO {
     public LDL convertirExcelALDL(String nombreArchivo) throws FileNotFoundException, 
         ValidacionPS0,IOException {
         File f = encontrarArchivo(nombreArchivo);
-        Double numero;
-        workbook= abrirLibroExcel(f);
+        workbook = abrirLibroExcel(f);
         sheet = workbook.getSheetAt(0);     
         Row row=sheet.getRow(0);
         Cell cell=row.getCell(1);
+        Double numero;
+        
         numero= cell.getNumericCellValue();
-        lista=new LDL();
+        lista = new LDL();
         NodoDoble nodo=new NodoDoble(numero);
         lista.insertar(nodo);
         return lista;
@@ -56,11 +57,8 @@ public class ArchivosExcelIO {
 
     public File encontrarArchivo(String nombreArchivo) throws FileNotFoundException, 
             ValidacionPS0{
-        File f;
-        InputStream in;
+        File f = new File(nombreArchivo);
         String extArchivo;
-        Workbook w;
-        f = new File(nombreArchivo);
         if (!f.exists()) {
             throw new FileNotFoundException("El archivo no existe");
         }
@@ -68,15 +66,16 @@ public class ArchivosExcelIO {
         if ("xls".compareTo(extArchivo) != 0) {
             throw new ValidacionPS0("La extensión es inválida");
         }
+        
         return f;
     }
 
     
     public Workbook abrirLibroExcel(File f) throws FileNotFoundException, 
             IOException {
-        InputStream in;
-        in=new FileInputStream (f);
-        Workbook w=new HSSFWorkbook(in);
+        InputStream in = new FileInputStream (f);
+        Workbook w = new HSSFWorkbook(in);
+        
         return w;
     }
 
