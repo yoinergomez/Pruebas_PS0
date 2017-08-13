@@ -7,7 +7,8 @@ package co.edu.udea.pruebas_ps0.util.estadistica;
 
 import co.edu.udea.pruebas_ps0.ldl.LDL;
 import co.edu.udea.pruebas_ps0.ldl.NodoDoble;
-import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,11 +23,12 @@ import org.junit.Test;
 public class MedidasEstadisticasTest {
 
     private LDL listaPrueba;
-    private ArrayList testList;
+    private MedidasEstadisticas testMedidas;
 
     @Before
     public void inicializarLista() {
         listaPrueba = new LDL();
+        testMedidas = new MedidasEstadisticas();
         listaPrueba.insertar(new NodoDoble(new Double("2")));
         listaPrueba.insertar(new NodoDoble(new Double("1")));
         listaPrueba.insertar(new NodoDoble(new Double("9")));
@@ -36,14 +38,15 @@ public class MedidasEstadisticasTest {
     
     @Test
     public void testMedia() {
-        
+        Double media = testMedidas.calcularMedia(listaPrueba);
+        assertTrue(media == 4.0);
     }
     
-//    @Test
-//    public void testVarianza() {
-//        final Double MEDIA = new Double("5");
-//        
-//        
-//    }
-
+    @Test (expected=ArithmeticException.class)
+    public void testMediaListaVacia() {
+        LDL lista = new LDL();
+        testMedidas.calcularMedia(lista);
+    }
+    
+    
 }

@@ -111,10 +111,16 @@ public class LDLTest {
     
     @Test
     public void testSumarElementosLista(){
-        instancia.imprimirLista();
         Double resultado = instancia.sumar();
-        instancia.imprimirLista();
         assertEquals(new Double(80.0), resultado);
+    }
+    
+    @Test
+    public void testSumarNegativosDecimalLista(){
+        instancia.insertar(new NodoDoble(new Double(1)));
+        instancia.insertar(new NodoDoble(new Double("-80.5")));
+        Double resultado = instancia.sumar();
+        assertEquals(new Double(0.5), resultado);
     }
     
     @Test
@@ -133,5 +139,11 @@ public class LDLTest {
     public void testTamaño() {
         int tamaño = instancia.length();
         assertEquals(3, tamaño);
+    }
+    
+    @Test
+    public void testLength(){
+        int numNodos = instancia.length();
+        assertEquals(3, numNodos);
     }
 }
