@@ -13,6 +13,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -25,38 +27,61 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author Jhonatan Orozco Blandón
  */
 public class ArchivosExcelIO {
-    
 
     private Sheet sheet;
     private Workbook workbook;
-    private LDL lista;
+    private final ArrayList<LDL> listaColumnas;
 
+    public ArchivosExcelIO() {
+        this.listaColumnas = new ArrayList<>();
+    }
 
     public Workbook getWorkbook() {
         return workbook;
     }
 
-    public LDL convertirExcelALDL(String nombreArchivo) throws FileNotFoundException, 
-        ValidacionPS0,IOException {
+    public ArrayList<LDL> getListaColumnas() {
+        return listaColumnas;
+    }
+
+    public void convertirExcelALDL(String nombreArchivo) throws FileNotFoundException,
+            ValidacionPS0, IOException {
         File f = encontrarArchivo(nombreArchivo);
         workbook = abrirLibroExcel(f);
-        sheet = workbook.getSheetAt(0);     
-        Row row=sheet.getRow(0);
-        Cell cell=row.getCell(1);
-        Double numero;
-        
-        numero= cell.getNumericCellValue();
-        lista = new LDL();
-        NodoDoble nodo=new NodoDoble(numero);
-        lista.insertar(nodo);
-        return lista;
-    }
-    
-    
-    
+        sheet = workbook.getSheetAt(0);
 
-    public File encontrarArchivo(String nombreArchivo) throws FileNotFoundException, 
-            ValidacionPS0{
+        Iterator<Row> rowIterator = sheet.iterator();
+        while (rowIterator.hasNext()) {
+            Row fila = rowIterator.next();
+            Iterator<Cell> cellIterator = fila.cellIterator();
+            int i = 0;
+
+            while (cellIterator.hasNext()) {
+                Cell celda = cellIterator.next();
+                if (listaColumnas.size() <= i) {
+                    listaColumnas.add(i, new LDL());
+                }
+                if (esCeldaValida(celda)) {
+                    listaColumnas.get(i).insertar(new NodoDoble(celda.getNumericCellValue()));
+                }
+                i++;
+            }
+        }
+    }
+
+    public boolean esCeldaValida(Cell celda) {
+        if (celda == null) {
+            return false;
+        } else if (celda.getCellType() == Cell.CELL_TYPE_BLANK) {
+            return false;
+        } else if (celda.getCellType() != Cell.CELL_TYPE_NUMERIC) {
+            return false;
+        }
+        return true;
+    }
+
+    public File encontrarArchivo(String nombreArchivo) throws FileNotFoundException,
+            ValidacionPS0 {
         File f = new File(nombreArchivo);
         String extArchivo;
         if (!f.exists()) {
@@ -66,16 +91,15 @@ public class ArchivosExcelIO {
         if ("xls".compareTo(extArchivo) != 0) {
             throw new ValidacionPS0("La extensión es inválida");
         }
-        
+
         return f;
     }
 
-    
-    public Workbook abrirLibroExcel(File f) throws FileNotFoundException, 
+    public Workbook abrirLibroExcel(File f) throws FileNotFoundException,
             IOException {
-        InputStream in = new FileInputStream (f);
+        InputStream in = new FileInputStream(f);
         Workbook w = new HSSFWorkbook(in);
-        
+
         return w;
     }
 
