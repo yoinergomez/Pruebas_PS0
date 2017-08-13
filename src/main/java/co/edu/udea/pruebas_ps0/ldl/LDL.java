@@ -90,4 +90,8 @@ public class LDL {
     public int length() {
         return cabeza.getDato().intValue();
     }
+    
+    public NodoDoble siguienteNodo(NodoDoble nodoActual){
+        return nodoActual.getSiguiente();
+    }
 }

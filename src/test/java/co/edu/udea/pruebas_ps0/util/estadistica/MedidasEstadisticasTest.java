@@ -48,5 +48,16 @@ public class MedidasEstadisticasTest {
         testMedidas.calcularMedia(lista);
     }
     
+    @Test
+    public void testVarianza() {
+        Double varianza = testMedidas.calcularVarianza(listaPrueba);
+        assertEquals(varianza, 15.979999999999999, 0);
+    }
     
+    @Test
+    public void testDesviacionEstandar() {
+        Double desviacionEstandar = testMedidas.calcularDesviacionEstandar(listaPrueba);
+        assertEquals(desviacionEstandar, 3.997499218261337, 0);
+    }
+ 
 }
