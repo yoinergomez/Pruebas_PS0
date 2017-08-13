@@ -17,10 +17,12 @@ public class MedidasEstadisticas {
     public Double calcularMedia(LDL lista){
         Double sumaNodos = lista.sumar();
         int numNodos = lista.length();
+        
         if (numNodos==0) {
             throw new ArithmeticException("División por cero: La lista está vacía.");
         }
-        return sumaNodos/numNodos;
+        
+        return Math.round((sumaNodos/numNodos) * 1e4) / 1e4;
     }
 
     Double calcularVarianza(LDL listaPrueba) {
@@ -30,11 +32,11 @@ public class MedidasEstadisticas {
         NodoDoble nodo = listaPrueba.getPrimerNodo();
         
         while(nodo != null){
-            sumatoria += (nodo.getDato() - MEDIA)*(nodo.getDato() - MEDIA);
+            sumatoria += Math.pow((nodo.getDato() - MEDIA), 2);
             nodo = listaPrueba.siguienteNodo(nodo);
         }
         
-        return sumatoria/(N-1);
+        return Math.round((sumatoria/(N-1)) * 1e4) / 1e4;
     }
 
     Double calcularDesviacionEstandar(LDL listaPrueba) {

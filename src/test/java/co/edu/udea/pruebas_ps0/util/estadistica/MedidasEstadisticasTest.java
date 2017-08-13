@@ -51,13 +51,24 @@ public class MedidasEstadisticasTest {
     @Test
     public void testVarianza() {
         Double varianza = testMedidas.calcularVarianza(listaPrueba);
-        assertEquals(varianza, 15.979999999999999, 0);
+        listaPrueba.imprimirLista();
+        assertEquals(15.98, varianza, 0);
     }
     
     @Test
     public void testDesviacionEstandar() {
         Double desviacionEstandar = testMedidas.calcularDesviacionEstandar(listaPrueba);
         assertEquals(desviacionEstandar, 3.997499218261337, 0);
+    }
+    
+    @Test
+    public void testDesviacionEstandarCero() {
+        LDL lista = new LDL();
+        lista.insertar(new NodoDoble(new Double("6.9")));
+        lista.insertar(new NodoDoble(new Double("6.9")));
+        lista.insertar(new NodoDoble(new Double("6.9")));
+        Double desviacionEstandar = testMedidas.calcularDesviacionEstandar(lista);
+        assertEquals(desviacionEstandar, 0, 0);
     }
  
 }

@@ -63,8 +63,10 @@ public class LDL {
      */
     public void imprimirLista() {
         NodoDoble aux = cabeza;
-        for (double i = 0; i <= cabeza.getDato(); i++) {
-            System.out.print(aux.getDato() + " ");
+        System.out.print("HEAD["+aux.getDato()+"]");
+        aux = aux.getSiguiente();
+        while (aux != null) {
+            System.out.print(" <=> "+aux.getDato());
             aux = aux.getSiguiente();
         }
     }
@@ -84,7 +86,7 @@ public class LDL {
             suma += aux.getDato();
             aux = aux.getSiguiente();
         }
-        return suma;
+        return Math.round(suma * 1e4) / 1e4;
     }
     
     public int length() {
