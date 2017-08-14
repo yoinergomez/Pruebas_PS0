@@ -20,10 +20,6 @@ Yoiner Esteban Gómez Ayala.
 - Java v1.8.
 - NetBeans v8.2.  
 <div align="center">
-<img src="https://cosmicjs.com/uploads/0389ce20-2acb-11e7-ae54-e9a1fc58ec22-github.jpg" height="150" >
-<img src="http://www.free-icons-download.net/images/plus-logo-icon-27956.png" height="50" style="margin:0px 20px 50px 20px;"/>
-<img src="https://travis-ci.org/images/logos/TravisCI-Mascot-1.png" height="150" />
-<img src="http://www.free-icons-download.net/images/plus-logo-icon-27956.png" height="50" style="margin:0px 20px 50px 20px;"/>
-<img src="https://avatars0.githubusercontent.com/u/16691566?v=4&s=200" height="150" />
+    <img src="https://image.ibb.co/jYj5Ma/Captura.png" >
 </div>
 
