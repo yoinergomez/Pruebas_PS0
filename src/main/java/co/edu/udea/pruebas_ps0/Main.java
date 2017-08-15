@@ -9,9 +9,13 @@ import co.edu.udea.pruebas_ps0.ldl.LDL;
 import co.edu.udea.pruebas_ps0.util.ArchivosExcelIO;
 import co.edu.udea.pruebas_ps0.util.estadistica.MedidasEstadisticas;
 import co.edu.udea.pruebas_ps0.util.excepcion.ValidacionPS0;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -29,20 +33,23 @@ public class Main {
      MedidasEstadisticas medidas = new MedidasEstadisticas();
         try {
             archivo.convertirExcelALDL(args[0]);
-            ArrayList<LDL> objetos = archivo.getListaColumnas();
-            int tamano = objetos.size();
-            for (int i = 0; i < tamano; i++) {
+            ArrayList<LDL> variables = archivo.getListaColumnas();
+            
+            /**for (int i = 0; i < tamano; i++) {
                 System.out.println("Table 1: Column ["+i+"] \t\t Mean:"
                         +medidas.calcularMedia(objetos.get(i))+
                         "\t\t Std. Dev:"+
                         medidas.calcularDesviacionEstandar(objetos.get(i)));
-            }
+            }**/
+            File f=archivo.generarResultados(variables);
+            System.out.println("Revise los resultados en la ruta:"+ f.getAbsolutePath());
+            
         } catch (FileNotFoundException e) {
-           e.printStackTrace();
-        } catch (IOException w){
-            w.printStackTrace();
-        } catch (ValidacionPS0 ex) {
-            ex.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (IOException e){
+             System.out.println(e.getMessage());
+        } catch (ValidacionPS0 | URISyntaxException e) {
+             System.out.println(e.getMessage());
         } catch (ArrayIndexOutOfBoundsException a){
             throw new ArrayIndexOutOfBoundsException("Debe ingresar la ruta del archivo.");
         }

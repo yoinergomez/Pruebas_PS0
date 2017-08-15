@@ -5,15 +5,11 @@
  */
 package co.edu.udea.pruebas_ps0;
 
-import java.io.FileNotFoundException;
+
 import java.net.URISyntaxException;
 import org.apache.commons.lang.SystemUtils;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 
 /**
  *
@@ -33,10 +29,12 @@ public class MainTest {
     }
     /**
      * Test of main method, of class Main.
+     * @throws java.net.URISyntaxException
      */
     @Test
     public void testMain() throws URISyntaxException {
-        String path = corregirPath("prueba.xls");
+        String path = 
+                corregirPath("pruebaDatosPractica.xls");
         String[] args = {path};
         Main.main(args);
     }

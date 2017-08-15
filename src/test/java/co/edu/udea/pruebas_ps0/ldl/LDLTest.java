@@ -47,8 +47,6 @@ public class LDLTest {
     public void testEliminar() {
         NodoDoble candidato = new NodoDoble(new Double(60));
         instancia.insertar(candidato);
-        instancia.imprimirLista();
-        System.out.println("\n");
         boolean result = instancia.eliminar(candidato);
         instancia.imprimirLista();
         assertEquals(Boolean.TRUE, result);
@@ -62,8 +60,6 @@ public class LDLTest {
         instancia.insertar(new NodoDoble(new Double(10)));
         instancia.insertar(candidato);
         instancia.insertar(new NodoDoble(new Double(50)));
-        instancia.imprimirLista();
-        System.out.println("\n");
         boolean result = instancia.eliminar(candidato);
         instancia.imprimirLista();
         assertEquals(Boolean.TRUE, result);
@@ -82,8 +78,6 @@ public class LDLTest {
     
     @Test
     public void testEliminarCabeza() {
-        instancia.imprimirLista();
-        System.out.println("\n");
         boolean result = instancia.eliminar(instancia.getPrimerNodo().getAnterior());
         instancia.imprimirLista();
         assertEquals(Boolean.FALSE, result);
@@ -91,8 +85,6 @@ public class LDLTest {
     
     @Test
     public void testEliminarUltimo() {
-        instancia.imprimirLista();
-        System.out.println("\n");
         boolean result = instancia.eliminar(instancia.getUltimo());
         instancia.imprimirLista();
         assertEquals(Boolean.TRUE, result);
@@ -102,7 +94,6 @@ public class LDLTest {
      */
     @Test
     public void testGetUltimo() {
-        System.out.println("getUltimo");
         NodoDoble candidato = new NodoDoble(new Double(60));
         instancia.insertar(candidato);
         NodoDoble result = instancia.getUltimo();
