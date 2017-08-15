@@ -16,7 +16,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -139,7 +142,7 @@ public class ArchivosExcelIO {
         numeroCeldas++;
         c=r.createCell(numeroCeldas);
         c.setCellValue("Desviación");
-       
+        System.out.println("numero variables"+numeroVariables);
         for (int i = 0; i < numeroVariables; i++) {
             LDL lista=variables.get(i);
             generarResultadosVariable(s,lista,i+1);
@@ -147,7 +150,10 @@ public class ArchivosExcelIO {
 
          rutaProyecto = ArchivosExcelIO.class.getProtectionDomain().
                     getCodeSource().getLocation().toURI().getPath();
-        String nombreArchivo = "resultados.xls";
+        Date date = new Date();
+        
+        String nombreArchivo = "resultado " + date.getTime()
+                + ".xls";
         rutaProyecto = rutaProyecto.concat(nombreArchivo);
         FileOutputStream outputStream = new FileOutputStream(rutaProyecto);
         w.write(outputStream);

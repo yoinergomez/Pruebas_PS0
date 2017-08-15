@@ -183,5 +183,34 @@ public class ArchivosExcelIOTest {
         File f=archivosExcelIO.generarResultados(variables);
         assertTrue(f.exists()); 
     }
+    
+    @Test
+    public void testCopiarMediayDesviacionMultiplesVariables() throws URISyntaxException, 
+            IOException{
+        LDL lista1=new LDL();
+        LDL lista2=new LDL();
+        LDL lista3=new LDL();
+        NodoDoble nodo;
+        for(int i=1;i<=10;i++){
+            nodo= new NodoDoble(new Double(Integer.toString(i)));
+            lista1.insertar(nodo);
+        }
+        for(int i=1;i<=7;i++){
+            nodo= new NodoDoble(new Double(Integer.toString(i+2)));
+            lista2.insertar(nodo);
+        }
+        
+        for(int i=1;i<=5;i++){
+            nodo= new NodoDoble(new Double(Integer.toString(i*2)));
+            lista3.insertar(nodo);
+        }
+        ArrayList<LDL> variables=new ArrayList();
+        variables.add(lista1);
+        variables.add(lista2);
+        variables.add(lista3);
+        File f=archivosExcelIO.generarResultados(variables);
+        assertTrue(f.exists());
+        
+    }
 
 }
