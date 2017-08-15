@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.SystemUtils;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -152,45 +153,41 @@ public class ArchivosExcelIOTest {
         LDL lista = archivosExcelIO.getListaColumnas().get(0);
         assertEquals(4, lista.length());
     }
-    
+
     @Test(expected = ValidacionPS0.class)
-    public void testLeerArchivoCorrupto() throws URISyntaxException, ValidacionPS0, 
+    public void testLeerArchivoCorrupto() throws URISyntaxException, ValidacionPS0,
             IOException {
         String path = corregirPath("pruebaCaracter.xls");
-        archivosExcelIO.convertirExcelALDL(path);     
+        archivosExcelIO.convertirExcelALDL(path);
     }
+
     @Test
-    public void testEscibirLDLConUnNodoAExcel() throws URISyntaxException, IOException{
-        LDL lista=new LDL();
-        NodoDoble nodo= new NodoDoble(new Double("6"));
-        lista.insertar(nodo);
-        File f=archivosExcelIO.generarResultadosExcel(lista);
-        assertTrue(f.exists());
-    }
-    
-    @Test
-    public void testCopiarMediaAExcel() throws URISyntaxException, IOException{
-        LDL lista=new LDL();
+    public void testCopiarMediaAExcel() throws URISyntaxException, IOException {
+        LDL lista = new LDL();
         NodoDoble nodo;
-        for(int i=1;i<=10;i++){
-            nodo= new NodoDoble(new Double(Integer.toString(i)));
+        for (int i = 1; i <= 10; i++) {
+            nodo = new NodoDoble(new Double(Integer.toString(i)));
             lista.insertar(nodo);
         }
-        File f=archivosExcelIO.generarResultadosExcel(lista);
-        assertTrue(f.exists());       
-        
+        ArrayList<LDL> variables = new ArrayList();
+        variables.add(lista);
+        File f = archivosExcelIO.generarResultados(variables);
+        assertTrue(f.exists());
+
     }
-    
+
     @Test
     public void testCopiarMediayDesviacionAExcel() throws URISyntaxException,
-            IOException{
-        LDL lista=new LDL();
+            IOException {
+        LDL lista = new LDL();
         NodoDoble nodo;
-        for(int i=1;i<=10;i++){
-            nodo= new NodoDoble(new Double(Integer.toString(i)));
+        for (int i = 1; i <= 10; i++) {
+            nodo = new NodoDoble(new Double(Integer.toString(i)));
             lista.insertar(nodo);
         }
-        File f=archivosExcelIO.generarResultadosExcel(lista);
+        ArrayList<LDL> variables = new ArrayList();
+        variables.add(lista);
+        File f = archivosExcelIO.generarResultados(variables);
         assertTrue(f.exists());
     }
 

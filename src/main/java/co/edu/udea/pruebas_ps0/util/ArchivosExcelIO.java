@@ -40,9 +40,6 @@ public class ArchivosExcelIO {
         this.listaColumnas = new ArrayList<>();
     }
 
-    public Workbook getWorkbook() {
-        return workbook;
-    }
 
     public ArrayList<LDL> getListaColumnas() {
         return listaColumnas;
@@ -106,45 +103,57 @@ public class ArchivosExcelIO {
         return w;
     }
     
-    public File generarResultadosExcel(LDL lista) throws URISyntaxException, IOException{
-        String rutaProyecto;
+    public void generarResultadosVariable(Sheet s,LDL lista, int numeroFilas) throws 
+            URISyntaxException, IOException{
         MedidasEstadisticas medidas=new MedidasEstadisticas();
-        try (Workbook w = new HSSFWorkbook()) {
-            int numeroFilas=0;
-            int numerosCeldas=0;
+            int numeroCeldas=0;
             double media;
             double desviacion;
-            Sheet s = (Sheet) w.createSheet();
             Row r=s.createRow(numeroFilas);
             numeroFilas++;
-            Cell c=r.createCell(numerosCeldas);
-            c.setCellValue("Media:");
-            numerosCeldas++;
-            c=r.createCell(numerosCeldas);
+            Cell c=r.createCell(numeroCeldas);
+            c.setCellValue("Variable "+ (numeroFilas-1));
+            numeroCeldas++;
+            c=r.createCell(numeroCeldas);
             media=medidas.calcularMedia(lista);
             c.setCellValue(media);
-            numerosCeldas=0;
-            r=s.createRow(numeroFilas);
-            numeroFilas++;
-            c=r.createCell(numerosCeldas);
-            c.setCellValue("Desviación:");
-            numerosCeldas++;
-            c=r.createCell(numerosCeldas);
+            numeroCeldas++;
+            c=r.createCell(numeroCeldas);
             desviacion=medidas.calcularDesviacionEstandar(lista);
             c.setCellValue(desviacion);
-            
-            rutaProyecto = ArchivosExcelIO.class.getProtectionDomain().
-                    getCodeSource().getLocation().toURI().getPath();
-            String nombreArchivo = "resultados.xls";
-            rutaProyecto = rutaProyecto.concat(nombreArchivo);
-            FileOutputStream outputStream = new FileOutputStream(rutaProyecto);
-            w.write(outputStream);
+    }
+    
+    public File generarResultados(ArrayList <LDL> variables) throws URISyntaxException, 
+            IOException{
+        int numeroVariables=variables.size();
+        Workbook w = new HSSFWorkbook();
+        Sheet s=w.createSheet();
+        String rutaProyecto;
+        int numeroCeldas=0;
+        Row r=s.createRow(0);
+        Cell c=r.createCell(numeroCeldas);
+        c.setCellValue("Variables");
+        numeroCeldas++;
+        c=r.createCell(numeroCeldas);
+        c.setCellValue("Media");
+        numeroCeldas++;
+        c=r.createCell(numeroCeldas);
+        c.setCellValue("Desviación");
+       
+        for (int i = 0; i < numeroVariables; i++) {
+            LDL lista=variables.get(i);
+            generarResultadosVariable(s,lista,i+1);
         }
-            File f= new File(rutaProyecto);
-            return f;
-        
-      
-        
+
+         rutaProyecto = ArchivosExcelIO.class.getProtectionDomain().
+                    getCodeSource().getLocation().toURI().getPath();
+        String nombreArchivo = "resultados.xls";
+        rutaProyecto = rutaProyecto.concat(nombreArchivo);
+        FileOutputStream outputStream = new FileOutputStream(rutaProyecto);
+        w.write(outputStream);
+        File f=new File(rutaProyecto);
+        return f;
+            
     }
 
 }
