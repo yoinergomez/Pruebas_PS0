@@ -5,13 +5,15 @@
  */
 package co.edu.udea.pruebas_ps0;
 
+import co.edu.udea.pruebas_ps0.ldl.LDL;
 import co.edu.udea.pruebas_ps0.util.ArchivosExcelIO;
+import co.edu.udea.pruebas_ps0.util.estadistica.MedidasEstadisticas;
 import co.edu.udea.pruebas_ps0.util.excepcion.ValidacionPS0;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.commons.io.FilenameUtils;
+import java.io.IOException;
+import java.util.ArrayList;
+
+
 
 /**
  * Es la clase principal que se encarga de ejecutar el proyecto.
@@ -20,13 +22,30 @@ import org.apache.commons.io.FilenameUtils;
  * @version v1
  */
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        System.out.println("Hello world!!!");
+    
+    public static void main(String[] args){
+        
+     ArchivosExcelIO archivo = new ArchivosExcelIO();
+     MedidasEstadisticas medidas = new MedidasEstadisticas();
+        try {
+            archivo.convertirExcelALDL(args[0]);
+            ArrayList<LDL> objetos = archivo.getListaColumnas();
+            int tamano = objetos.size();
+            for (int i = 0; i < tamano; i++) {
+                System.out.println("Table 1: Column ["+i+"] \t\t Mean:"
+                        +medidas.calcularMedia(objetos.get(i))+
+                        "\t\t Std. Dev:"+
+                        medidas.calcularDesviacionEstandar(objetos.get(i)));
+            }
+        } catch (FileNotFoundException e) {
+           e.printStackTrace();
+        } catch (IOException w){
+            w.printStackTrace();
+        } catch (ValidacionPS0 ex) {
+            ex.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException a){
+            throw new ArrayIndexOutOfBoundsException("Debe ingresar la ruta del archivo.");
         }
+    }
     
 }
