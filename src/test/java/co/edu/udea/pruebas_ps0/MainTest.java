@@ -27,8 +27,13 @@ public class MainTest {
      */
     @Test
     public void testMain() {
-        String[] args = {"C:\\Users\\Frank\\Desktop\\Pruebas_PS0\\src\\main\\resources\\prueba.xls"};
+        String[] args = {"src\\main\\resources\\prueba.xls"};
         Main.main(args);
+    }
+    
+    @Test
+    public void testMainClass() {
+        Main m = new Main();
     }
     
     @Test(expected = ArrayIndexOutOfBoundsException.class)
