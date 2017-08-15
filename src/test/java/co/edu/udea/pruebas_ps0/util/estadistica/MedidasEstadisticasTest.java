@@ -58,7 +58,7 @@ public class MedidasEstadisticasTest {
     @Test
     public void testDesviacionEstandar() {
         Double desviacionEstandar = testMedidas.calcularDesviacionEstandar(listaPrueba);
-        assertEquals(desviacionEstandar, 3.997499218261337, 0);
+        assertEquals(desviacionEstandar, 4.0, 0);
     }
     
     @Test
