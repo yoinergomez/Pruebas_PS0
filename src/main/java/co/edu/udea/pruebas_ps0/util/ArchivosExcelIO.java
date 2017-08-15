@@ -11,8 +11,10 @@ import co.edu.udea.pruebas_ps0.util.excepcion.ValidacionPS0;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.apache.commons.io.FilenameUtils;
@@ -101,6 +103,27 @@ public class ArchivosExcelIO {
         Workbook w = new HSSFWorkbook(in);
 
         return w;
+    }
+    
+    public File crearLibroExcel(LDL lista) throws URISyntaxException, IOException{
+        String rutaProyecto;
+        try (Workbook w = new HSSFWorkbook()) {
+            Sheet s = (Sheet) w.createSheet();
+            Row r=s.createRow(0);
+            Cell c=r.createCell(0);
+            c.setCellValue(lista.getPrimerNodo().getDato());
+            rutaProyecto = ArchivosExcelIO.class.getProtectionDomain().
+                    getCodeSource().getLocation().toURI().getPath();
+            String nombreArchivo = "resultados.xls";
+            rutaProyecto = rutaProyecto.concat(nombreArchivo);
+            FileOutputStream outputStream = new FileOutputStream(rutaProyecto);
+            w.write(outputStream);
+        }
+            File f= new File(rutaProyecto);
+            return f;
+        
+      
+        
     }
 
 }
