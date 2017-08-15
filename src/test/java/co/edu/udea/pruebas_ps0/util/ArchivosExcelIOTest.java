@@ -174,5 +174,18 @@ public class ArchivosExcelIOTest {
         assertTrue(f.exists());       
         
     }
+    
+    @Test
+    public void testCopiarMediayDesviacionAExcel() throws URISyntaxException,
+            IOException{
+        LDL lista=new LDL();
+        NodoDoble nodo;
+        for(int i=1;i<=10;i++){
+            nodo= new NodoDoble(new Double(Integer.toString(i)));
+            lista.insertar(nodo);
+        }
+        File f=archivosExcelIO.generarResultadosExcel(lista);
+        assertTrue(f.exists());
+    }
 
 }

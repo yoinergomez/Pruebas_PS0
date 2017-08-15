@@ -113,14 +113,25 @@ public class ArchivosExcelIO {
             int numeroFilas=0;
             int numerosCeldas=0;
             double media;
+            double desviacion;
             Sheet s = (Sheet) w.createSheet();
             Row r=s.createRow(numeroFilas);
+            numeroFilas++;
             Cell c=r.createCell(numerosCeldas);
             c.setCellValue("Media:");
             numerosCeldas++;
             c=r.createCell(numerosCeldas);
             media=medidas.calcularMedia(lista);
             c.setCellValue(media);
+            numerosCeldas=0;
+            r=s.createRow(numeroFilas);
+            numeroFilas++;
+            c=r.createCell(numerosCeldas);
+            c.setCellValue("Desviación:");
+            numerosCeldas++;
+            c=r.createCell(numerosCeldas);
+            desviacion=medidas.calcularDesviacionEstandar(lista);
+            c.setCellValue(desviacion);
             
             rutaProyecto = ArchivosExcelIO.class.getProtectionDomain().
                     getCodeSource().getLocation().toURI().getPath();
