@@ -6,6 +6,8 @@
 package co.edu.udea.pruebas_ps0;
 
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import org.apache.commons.lang.SystemUtils;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,13 +23,21 @@ public class MainTest {
     
     public MainTest() {
     }
-
+    public String corregirPath(String nombreRecurso) throws URISyntaxException {
+        String path = this.getClass().getClassLoader().getResource(nombreRecurso)
+                .toURI().toString();
+        if (SystemUtils.IS_OS_WINDOWS) {
+            return path.substring(6);
+        }
+        return path.substring(5);
+    }
     /**
      * Test of main method, of class Main.
      */
     @Test
-    public void testMain() {
-        String[] args = {"src\\main\\resources\\prueba.xls"};
+    public void testMain() throws URISyntaxException {
+        String path = corregirPath("prueba.xls");
+        String[] args = {path};
         Main.main(args);
     }
     
