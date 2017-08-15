@@ -151,4 +151,11 @@ public class ArchivosExcelIOTest {
         LDL lista = archivosExcelIO.getListaColumnas().get(0);
         assertEquals(4, lista.length());        
     }
+    
+    @Test(expected = ValidacionPS0.class)
+    public void testLeerArchivoCorrupto() throws URISyntaxException, ValidacionPS0, 
+            IOException {
+        String path = corregirPath("pruebaCaracter.xls");
+        archivosExcelIO.convertirExcelALDL(path);     
+    }
 }

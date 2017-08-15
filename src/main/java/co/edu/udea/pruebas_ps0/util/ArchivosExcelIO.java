@@ -21,6 +21,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellReference;
 
 /**
  *
@@ -69,13 +70,12 @@ public class ArchivosExcelIO {
         }
     }
 
-    public boolean esCeldaValida(Cell celda) {
-        if (celda == null) {
-            return false;
-        } else if (celda.getCellType() == Cell.CELL_TYPE_BLANK) {
+    public boolean esCeldaValida(Cell celda) throws ValidacionPS0 {
+        if (celda == null || celda.getCellType() == Cell.CELL_TYPE_BLANK) {
             return false;
         } else if (celda.getCellType() != Cell.CELL_TYPE_NUMERIC) {
-            return false;
+            CellReference cr = new CellReference(celda);
+            throw new ValidacionPS0("Error leyendo la celda "+cr.formatAsString());
         }
         return true;
     }
