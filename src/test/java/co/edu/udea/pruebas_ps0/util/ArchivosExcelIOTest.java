@@ -153,35 +153,42 @@ public class ArchivosExcelIOTest {
         LDL lista = archivosExcelIO.getListaColumnas().get(0);
         assertEquals(4, lista.length());
     }
-        
+
+    @Test(expected = ValidacionPS0.class)
+    public void testLeerArchivoCorrupto() throws URISyntaxException, ValidacionPS0,
+            IOException {
+        String path = corregirPath("pruebaCaracter.xls");
+        archivosExcelIO.convertirExcelALDL(path);
+    }
+
     @Test
-    public void testCopiarMediaAExcel() throws URISyntaxException, IOException{
-        LDL lista=new LDL();
+    public void testCopiarMediaAExcel() throws URISyntaxException, IOException {
+        LDL lista = new LDL();
         NodoDoble nodo;
-        for(int i=1;i<=10;i++){
-            nodo= new NodoDoble(new Double(Integer.toString(i)));
+        for (int i = 1; i <= 10; i++) {
+            nodo = new NodoDoble(new Double(Integer.toString(i)));
             lista.insertar(nodo);
         }
-        ArrayList<LDL> variables=new ArrayList();
+        ArrayList<LDL> variables = new ArrayList();
         variables.add(lista);
-        File f=archivosExcelIO.generarResultados(variables);
-        assertTrue(f.exists());       
-        
+        File f = archivosExcelIO.generarResultados(variables);
+        assertTrue(f.exists());
+
     }
-    
+
     @Test
     public void testCopiarMediayDesviacionAExcel() throws URISyntaxException,
-            IOException{
-        LDL lista=new LDL();
+            IOException {
+        LDL lista = new LDL();
         NodoDoble nodo;
-        for(int i=1;i<=10;i++){
-            nodo= new NodoDoble(new Double(Integer.toString(i)));
+        for (int i = 1; i <= 10; i++) {
+            nodo = new NodoDoble(new Double(Integer.toString(i)));
             lista.insertar(nodo);
         }
-        ArrayList<LDL> variables=new ArrayList();
+        ArrayList<LDL> variables = new ArrayList();
         variables.add(lista);
-        File f=archivosExcelIO.generarResultados(variables);
-        assertTrue(f.exists()); 
+        File f = archivosExcelIO.generarResultados(variables);
+        assertTrue(f.exists());
     }
     
     @Test
