@@ -7,12 +7,15 @@ package co.edu.udea.pruebas_ps0.util;
 
 import co.edu.udea.pruebas_ps0.ldl.LDL;
 import co.edu.udea.pruebas_ps0.ldl.NodoDoble;
+import co.edu.udea.pruebas_ps0.util.estadistica.MedidasEstadisticas;
 import co.edu.udea.pruebas_ps0.util.excepcion.ValidacionPS0;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.apache.commons.io.FilenameUtils;
@@ -101,6 +104,47 @@ public class ArchivosExcelIO {
         Workbook w = new HSSFWorkbook(in);
 
         return w;
+    }
+    
+    public File generarResultadosExcel(LDL lista) throws URISyntaxException, IOException{
+        String rutaProyecto;
+        MedidasEstadisticas medidas=new MedidasEstadisticas();
+        try (Workbook w = new HSSFWorkbook()) {
+            int numeroFilas=0;
+            int numerosCeldas=0;
+            double media;
+            double desviacion;
+            Sheet s = (Sheet) w.createSheet();
+            Row r=s.createRow(numeroFilas);
+            numeroFilas++;
+            Cell c=r.createCell(numerosCeldas);
+            c.setCellValue("Media:");
+            numerosCeldas++;
+            c=r.createCell(numerosCeldas);
+            media=medidas.calcularMedia(lista);
+            c.setCellValue(media);
+            numerosCeldas=0;
+            r=s.createRow(numeroFilas);
+            numeroFilas++;
+            c=r.createCell(numerosCeldas);
+            c.setCellValue("Desviación:");
+            numerosCeldas++;
+            c=r.createCell(numerosCeldas);
+            desviacion=medidas.calcularDesviacionEstandar(lista);
+            c.setCellValue(desviacion);
+            
+            rutaProyecto = ArchivosExcelIO.class.getProtectionDomain().
+                    getCodeSource().getLocation().toURI().getPath();
+            String nombreArchivo = "resultados.xls";
+            rutaProyecto = rutaProyecto.concat(nombreArchivo);
+            FileOutputStream outputStream = new FileOutputStream(rutaProyecto);
+            w.write(outputStream);
+        }
+            File f= new File(rutaProyecto);
+            return f;
+        
+      
+        
     }
 
 }

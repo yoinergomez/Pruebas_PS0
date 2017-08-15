@@ -7,6 +7,8 @@ package co.edu.udea.pruebas_ps0.util.estadistica;
 
 import co.edu.udea.pruebas_ps0.ldl.LDL;
 import co.edu.udea.pruebas_ps0.ldl.NodoDoble;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  *
@@ -39,7 +41,10 @@ public class MedidasEstadisticas {
         return Math.round((sumatoria/(N-1)) * 1e4) / 1e4;
     }
 
-    Double calcularDesviacionEstandar(LDL listaPrueba) {
-        return Math.sqrt(calcularVarianza(listaPrueba));
+    public Double calcularDesviacionEstandar(LDL listaPrueba) {
+        Double resultado = Math.sqrt(calcularVarianza(listaPrueba));
+        Double resultadoConPrecision = BigDecimal.valueOf(resultado).setScale(2,
+                RoundingMode.HALF_UP).doubleValue();
+        return resultadoConPrecision;
     }
 }

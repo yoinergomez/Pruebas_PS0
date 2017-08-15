@@ -1,6 +1,6 @@
 # [UDEA-PS] Programa 1 [![Build Status](https://travis-ci.org/yoinergomez/Pruebas_PS0.svg?branch=master)](https://travis-ci.org/yoinergomez/Pruebas_PS0) [![Coverage Status](https://coveralls.io/repos/github/yoinergomez/Pruebas_PS0/badge.svg?branch=master)](https://coveralls.io/github/yoinergomez/Pruebas_PS0?branch=master)
 
-Programa que calcula la media y desviación estándar apartir de un conjunto de datos de excel.
+Programa que calcula la media y desviación estándar a partir de un conjunto de datos en formato excel.  
 
 ## Desarrolladores
 Jhonatan Alexánder Orozco Blandón.  
