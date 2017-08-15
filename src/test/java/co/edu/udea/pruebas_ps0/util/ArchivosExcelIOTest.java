@@ -154,12 +154,25 @@ public class ArchivosExcelIOTest {
     }
     
     @Test
-    public void testCrearLibroExcel() throws URISyntaxException, IOException{
+    public void testEscibirLDLConUnNodoAExcel() throws URISyntaxException, IOException{
         LDL lista=new LDL();
         NodoDoble nodo= new NodoDoble(new Double("6"));
         lista.insertar(nodo);
-        File f=archivosExcelIO.crearLibroExcel(lista);
+        File f=archivosExcelIO.generarResultadosExcel(lista);
         assertTrue(f.exists());
+    }
+    
+    @Test
+    public void testCopiarMediaAExcel() throws URISyntaxException, IOException{
+        LDL lista=new LDL();
+        NodoDoble nodo;
+        for(int i=1;i<=10;i++){
+            nodo= new NodoDoble(new Double(Integer.toString(i)));
+            lista.insertar(nodo);
+        }
+        File f=archivosExcelIO.generarResultadosExcel(lista);
+        assertTrue(f.exists());       
+        
     }
 
 }

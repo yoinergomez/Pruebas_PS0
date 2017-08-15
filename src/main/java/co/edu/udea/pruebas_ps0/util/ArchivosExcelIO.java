@@ -7,6 +7,7 @@ package co.edu.udea.pruebas_ps0.util;
 
 import co.edu.udea.pruebas_ps0.ldl.LDL;
 import co.edu.udea.pruebas_ps0.ldl.NodoDoble;
+import co.edu.udea.pruebas_ps0.util.estadistica.MedidasEstadisticas;
 import co.edu.udea.pruebas_ps0.util.excepcion.ValidacionPS0;
 import java.io.File;
 import java.io.FileInputStream;
@@ -105,13 +106,22 @@ public class ArchivosExcelIO {
         return w;
     }
     
-    public File crearLibroExcel(LDL lista) throws URISyntaxException, IOException{
+    public File generarResultadosExcel(LDL lista) throws URISyntaxException, IOException{
         String rutaProyecto;
+        MedidasEstadisticas medidas=new MedidasEstadisticas();
         try (Workbook w = new HSSFWorkbook()) {
+            int numeroFilas=0;
+            int numerosCeldas=0;
+            double media;
             Sheet s = (Sheet) w.createSheet();
-            Row r=s.createRow(0);
-            Cell c=r.createCell(0);
-            c.setCellValue(lista.getPrimerNodo().getDato());
+            Row r=s.createRow(numeroFilas);
+            Cell c=r.createCell(numerosCeldas);
+            c.setCellValue("Media:");
+            numerosCeldas++;
+            c=r.createCell(numerosCeldas);
+            media=medidas.calcularMedia(lista);
+            c.setCellValue(media);
+            
             rutaProyecto = ArchivosExcelIO.class.getProtectionDomain().
                     getCodeSource().getLocation().toURI().getPath();
             String nombreArchivo = "resultados.xls";
