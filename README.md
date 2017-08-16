@@ -18,8 +18,10 @@ Yoiner Esteban Gómez Ayala.
 
 ## Tecnologías usadas
 - Java v1.8.
-- NetBeans v8.2.  
+- NetBeans v8.2.
+- Maven v1.8.  
+  
 <div align="center">
-    <img src="https://image.ibb.co/jYj5Ma/Captura.png" >
+    <img src="https://image.ibb.co/gx0DRa/tech_Readme_PS1.jpg" >
 </div>
 
