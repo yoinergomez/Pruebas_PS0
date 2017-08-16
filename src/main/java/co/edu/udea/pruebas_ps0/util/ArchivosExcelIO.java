@@ -142,7 +142,7 @@ public class ArchivosExcelIO {
         numeroCeldas++;
         c=r.createCell(numeroCeldas);
         c.setCellValue("Desviación");
-        System.out.println("numero variables"+numeroVariables);
+
         for (int i = 0; i < numeroVariables; i++) {
             LDL lista=variables.get(i);
             generarResultadosVariable(s,lista,i+1);
