@@ -10,8 +10,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 import org.apache.commons.lang.SystemUtils;
 import org.junit.Test;
 
@@ -53,13 +51,4 @@ public class MainTest {
         Main m = new Main();
     }
 
-//    @Test(expected = NoSuchElementException.class)
-//    public void testMainVoidFile() {
-//        String data = " ";
-//        String[] args = null;
-//        final InputStream original = System.in;
-//        System.setIn(new ByteArrayInputStream(data.getBytes()));
-//        Main.main(args);
-//        System.setIn(original);
-//    }
 }
